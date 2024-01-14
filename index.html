@@ -63,7 +63,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="ungesch%C3%BCtzte-architektur">Ungeschützte Architektur</h1>
 <p><img src="images/architecture_01.png" alt="center" style="height:500px;" /></p>
 </section>
@@ -85,7 +85,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="ungesch%C3%BCtzte-architektur-1">Ungeschützte Architektur</h1>
 <p><img src="images/architecture_02.png" alt="center" style="height:500px;" /></p>
 </section>
@@ -107,7 +107,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="ungesch%C3%BCtzte-architektur-2">Ungeschützte Architektur</h1>
 <p><img src="images/architecture_03.png" alt="center" style="height:500px;" /></p>
 </section>
@@ -129,7 +129,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="ungesch%C3%BCtzte-architektur-3">Ungeschützte Architektur</h1>
 <p><img src="images/architecture_04.png" alt="center" style="height:500px;" /></p>
 </section>
@@ -151,7 +151,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="gesch%C3%BCtzte-datenbankstruktur">Geschützte Datenbankstruktur</h1>
 <p><img src="images/architecture_05.png" alt="center" style="height:500px;" /></p>
 </section>
@@ -173,7 +173,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="beispiel-twitter">Beispiel Twitter</h1>
 <p>Welche Arten von schlechten Inputs können wir erfahren?</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
@@ -201,7 +201,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="beispiel-twitter-1">Beispiel Twitter</h1>
 <p>Schlechte Inputs</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
@@ -234,7 +234,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="sql-injection">SQL Injection</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;authorId&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ElonMusksUserId&#x27;; DELETE * from Users; COMMIT;&quot;</span><span class="hljs-punctuation">,</span>
@@ -262,7 +262,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="schlechte-inputs">Schlechte Inputs</h1>
 <ul>
 <li>Felder nicht gefüllt</li>
@@ -290,7 +290,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="inputvalidierung-mit-joi">Inputvalidierung mit JOI</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-js"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Joi</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;joi&#x27;</span>)
 
@@ -326,8 +326,8 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
-<h1 id="weiter-validierungsm%C3%B6glichkeiten">Weiter Validierungsmöglichkeiten</h1>
+;" data-marpit-pagination-total="16">
+<h1 id="weitere-validierungsm%C3%B6glichkeiten">Weitere Validierungsmöglichkeiten</h1>
 <p><a href="https://github.com/hapijs/joi/blob/v17.11.0/API.md">https://github.com/hapijs/joi/blob/v14.3.1/API.md</a></p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-js"><span class="hljs-comment">// Joi.object() beschreibt ein JS-Object</span>
 <span class="hljs-keyword">const</span> schema = <span class="hljs-title class_">Joi</span>.<span class="hljs-title function_">object</span>({
@@ -341,14 +341,10 @@ img[alt~=center]{
     <span class="hljs-attr">repeat_password</span>: <span class="hljs-title class_">Joi</span>.<span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;password&#x27;</span>),
 
     <span class="hljs-comment">// Array erlaubt mehrere optionale Typen </span>
-    <span class="hljs-attr">access_token</span>: [
-        <span class="hljs-title class_">Joi</span>.<span class="hljs-title function_">string</span>(),
-        <span class="hljs-title class_">Joi</span>.<span class="hljs-title function_">number</span>()
-    ],
+    <span class="hljs-attr">access_token</span>: [<span class="hljs-title class_">Joi</span>.<span class="hljs-title function_">string</span>(), <span class="hljs-title class_">Joi</span>.<span class="hljs-title function_">number</span>()],
 
     <span class="hljs-comment">// string.email() defniert den String als E-Mail-Adresse</span>
-    <span class="hljs-attr">email</span>: <span class="hljs-title class_">Joi</span>.<span class="hljs-title function_">string</span>()
-        .<span class="hljs-title function_">email</span>({ <span class="hljs-attr">minDomainSegments</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">tlds</span>: { <span class="hljs-attr">allow</span>: [<span class="hljs-string">&#x27;com&#x27;</span>, <span class="hljs-string">&#x27;net&#x27;</span>] } })
+    <span class="hljs-attr">email</span>: <span class="hljs-title class_">Joi</span>.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">email</span>({ <span class="hljs-attr">minDomainSegments</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">tlds</span>: { <span class="hljs-attr">allow</span>: [<span class="hljs-string">&#x27;com&#x27;</span>, <span class="hljs-string">&#x27;net&#x27;</span>] } })
 })
 </code></pre>
 </section>
@@ -370,7 +366,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="beispiel-f%C3%BCr-einbindung-an-express-server">Beispiel für Einbindung an Express-Server</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-js">app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/post&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {
   <span class="hljs-keyword">const</span> body = req.<span class="hljs-property">body</span>
@@ -411,34 +407,8 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h1 id="beispiel-f%C3%BCr-einbindung-als-express-middleware">Beispiel für Einbindung als Express-Middleware</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-js"><span class="hljs-keyword">const</span> myTwitterPostSchema = <span class="hljs-title class_">Joi</span>.<span class="hljs-title function_">object</span>({
-    <span class="hljs-attr">authorId</span>: <span class="hljs-title class_">Joi</span>.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">alphanum</span>().required(),
-    <span class="hljs-attr">content</span>: <span class="hljs-title class_">Joi</span>.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">min</span>(<span class="hljs-number">1</span>).required()
-  })
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-theme="rose-pine" data-heading-divider="2" data-style=".mermaid {
-  background-color: transparent; border-color: transparent; width: max-content; margin: 0 auto;
-}
-img[alt~=center]{
-  width: 100%;
-  object-fit: contain;
-  margin: 0 auto;
-  background-color: transparent;
-}
-" lang="en-US" data-marpit-pagination="15" style="--paginate:true;--theme:rose-pine;--heading-divider:2;--style:.mermaid {
-  background-color: transparent; border-color: transparent; width: max-content; margin: 0 auto;
-}
-img[alt~=center]{
-  width: 100%;
-  object-fit: contain;
-  margin: 0 auto;
-  background-color: transparent;
-}
-;" data-marpit-pagination-total="17">
-<h1 id="beispiel-f%C3%BCr-einbindung-als-express-middleware-1">Beispiel für Einbindung als Express-Middleware</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-js">validateSchema = <span class="hljs-keyword">function</span> (<span class="hljs-params">schema = <span class="hljs-literal">null</span>, property = <span class="hljs-literal">null</span></span>) {
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">middleware</span>(<span class="hljs-params">req, res, next</span>) {
     <span class="hljs-keyword">if</span> (!<span class="hljs-variable constant_">JOI_ENABLED</span>) <span class="hljs-keyword">return</span> <span class="hljs-title function_">next</span>()
@@ -461,6 +431,28 @@ app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x
 })
 </code></pre>
 </section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-theme="rose-pine" data-heading-divider="2" data-style=".mermaid {
+  background-color: transparent; border-color: transparent; width: max-content; margin: 0 auto;
+}
+img[alt~=center]{
+  width: 100%;
+  object-fit: contain;
+  margin: 0 auto;
+  background-color: transparent;
+}
+" lang="en-US" data-marpit-pagination="15" style="--paginate:true;--theme:rose-pine;--heading-divider:2;--style:.mermaid {
+  background-color: transparent; border-color: transparent; width: max-content; margin: 0 auto;
+}
+img[alt~=center]{
+  width: 100%;
+  object-fit: contain;
+  margin: 0 auto;
+  background-color: transparent;
+}
+;" data-marpit-pagination-total="16">
+<h1 id="gesch%C3%BCtzter-backend-server">Geschützter Backend-Server</h1>
+<p><img src="images/architecture_06.png" alt="center" style="height:500px;" /></p>
+</section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-theme="rose-pine" data-heading-divider="2" data-style=".mermaid {
   background-color: transparent; border-color: transparent; width: max-content; margin: 0 auto;
 }
@@ -479,29 +471,7 @@ img[alt~=center]{
   margin: 0 auto;
   background-color: transparent;
 }
-;" data-marpit-pagination-total="17">
-<h1 id="gesch%C3%BCtzter-backend-server">Geschützter Backend-Server</h1>
-<p><img src="images/architecture_06.png" alt="center" style="height:500px;" /></p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-theme="rose-pine" data-heading-divider="2" data-style=".mermaid {
-  background-color: transparent; border-color: transparent; width: max-content; margin: 0 auto;
-}
-img[alt~=center]{
-  width: 100%;
-  object-fit: contain;
-  margin: 0 auto;
-  background-color: transparent;
-}
-" lang="en-US" data-marpit-pagination="17" style="--paginate:true;--theme:rose-pine;--heading-divider:2;--style:.mermaid {
-  background-color: transparent; border-color: transparent; width: max-content; margin: 0 auto;
-}
-img[alt~=center]{
-  width: 100%;
-  object-fit: contain;
-  margin: 0 auto;
-  background-color: transparent;
-}
-;" data-marpit-pagination-total="17">
+;" data-marpit-pagination-total="16">
 <h2 id="was-denkt-ihr">Was denkt ihr?</h2>
 <ol>
 <li>Ist das einfach?</li>
