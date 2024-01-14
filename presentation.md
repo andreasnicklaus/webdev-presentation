@@ -102,7 +102,7 @@ const result = myTwitterPostSchema.validate(data)
 if (result.error) console.error(result.error.message)
 ```
 
-# Weiter Validierungsmöglichkeiten
+# Weitere Validierungsmöglichkeiten
 
 [https://github.com/hapijs/joi/blob/v14.3.1/API.md](https://github.com/hapijs/joi/blob/v17.11.0/API.md)
 
@@ -119,14 +119,10 @@ const schema = Joi.object({
     repeat_password: Joi.ref('password'),
 
     // Array erlaubt mehrere optionale Typen 
-    access_token: [
-        Joi.string(),
-        Joi.number()
-    ],
+    access_token: [Joi.string(), Joi.number()],
 
     // string.email() defniert den String als E-Mail-Adresse
-    email: Joi.string()
-        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+    email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
 })
 ```
 
@@ -153,13 +149,6 @@ app.post('/post', (req, res, next) => {
 })
 ```
 
-# Beispiel für Einbindung als Express-Middleware
-```js
-const myTwitterPostSchema = Joi.object({
-    authorId: Joi.string().alphanum().required(),
-    content: Joi.string().min(1).required()
-  })
-```
 # Beispiel für Einbindung als Express-Middleware
 ```js
 validateSchema = function (schema = null, property = null) {
