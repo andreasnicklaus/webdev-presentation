@@ -43,7 +43,7 @@ Welche Arten von schlechten Inputs können wir erfahren?
 {
   "authorId" : "ElonMusksUserId",
   "content" : "Mark Zuckerberg is a great business man.",
-  "creationTime": "2024-01-12T18:13:38.699Z"
+  "creationTime": 1705326917363
 }
 ```
 
@@ -54,13 +54,13 @@ Schlechte Inputs
 {
   "authorId" : "iReallyAmElonMusk",
   "content" : "Mark Zuckerberg $§%&/&",
-  "creationTime": "2024-01-12T18:13:38.699Z"
+  "creationTime": 000000001
 }
 ```
 ```json
 {
   "content" : 123456,
-  "creationTime": "1603-01-01T00:00:00.000Z"
+  "creationTime": "1603-01-01T00:00:00.000Z",
 }
 ```
 
@@ -68,7 +68,8 @@ Schlechte Inputs
 ```json
 {
   "authorId" : "ElonMusksUserId'; DELETE * from Users; COMMIT;",
-  "content" : "123456"
+  "content" : "123456",
+  "creationTime": 1705326917363
 }
 ```
 ```sql
@@ -90,7 +91,10 @@ const Joi = require('joi')
 
 const myTwitterPostSchema = Joi.object({
   authorId: Joi.string().alphanum().required(),
-  content: Joi.string().min(1).required()
+  content: Joi.string().min(1).required(),
+  creationTime: Joi.number().integer()
+    .min(new Date().valueOf()-60000)
+    .max(new Date().valueOf()).required()
 })
 
 const data = {
@@ -104,12 +108,11 @@ if (result.error) console.error(result.error.message)
 
 # Weitere Validierungsmöglichkeiten
 
-[https://github.com/hapijs/joi/blob/v14.3.1/API.md](https://github.com/hapijs/joi/blob/v17.11.0/API.md)
 
 ```js
 // Joi.object() beschreibt ein JS-Object
 const schema = Joi.object({
-    // Joi.string() beschreibt ein JS-String
+  // Joi.string() beschreibt ein JS-String
     username: Joi.string().alphanum().min(3).max(30).required(),
 
     // .pattern() erlaubt eine Regular Expression
@@ -125,21 +128,24 @@ const schema = Joi.object({
     email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
 })
 ```
+<!-- _footer: "[https://github.com/hapijs/joi/blob/v14.3.1/API.md](https://github.com/hapijs/joi/blob/v17.11.0/API.md)"
+ -->
 
 # Beispiel für Einbindung an Express-Server
 ```js
 app.post('/post', (req, res, next) => {
-  const body = req.body
   const myTwitterPostSchema = Joi.object({
-    authorId: Joi.string().alphanum().required(),
-    content: Joi.string().min(1).required()
-  })
-  const result = myTwitterPostSchema.validate(body) 
+  authorId: Joi.string().alphanum().required(),
+  content: Joi.string().min(1).required(),
+  creationTime: Joi.number().integer()
+    .min(new Date().valueOf()-60000).max(new Date().valueOf()).required()
+})
+  const result = myTwitterPostSchema.validate(req.body) 
   
   if (!result.error) { 
     res.status(422).json({ 
       message: 'Invalid request, error: ' + error.message, 
-      data: body
+      data: req.body
     }) 
   } else { 
     createPost(data).then((createdPost) => {
@@ -181,3 +187,81 @@ app.post('/post', validateSchema(myTwitterPostSchema, "body"), => {
 1. Ist das einfach?
 2. Ist das effektiv?
 3. Welche Problemen ergeben sich?
+
+# Authentisierung falsch gemacht
+
+```json
+{
+  "myId": "097151d159a0467ea3b45ec37abf771c",
+  "post": {
+    "content": "This is a funny tweet about spaghetti.",
+    "creationTime": 1705326917363
+  }
+}
+```
+Ist das sicher?
+
+# Authentisierung richtig gemacht
+
+> The HTTP Authorization request header can be used to provide credentials that authenticate a user agent with a server, allowing access to a protected resource.
+
+`Authorization: <auth-scheme> <authorization-parameters>`
+
+Hier werden 2 Authentisierungsschemas vorgestellt, es gibt aber noch mehr:
+1. Basic
+2. Bearer
+
+<!-- _footer: "[https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization)" -->
+
+## Basic Authentisierung
+
+`Authorization: Basic <base64('<username>:<password>')>`
+
+- Authentisierungsschema: `Basic`
+- Authentisierungsparameter besteht aus dem Base64-enkodiertem String `<username>:<password>`
+
+<div style="background-color: #ff4400aa; border: solid 6px #ff4400; padding: 10px 20px; margin: 10px 0; border-radius: 10px;">
+  <span style="color: white;">Warnung: Base64-encoding kann einfach zum ursprünglichen Namen und Passwort dekodiert werden. Basic Authentisierung ist deshalb **vollständig unsicher**. HTTPS is immer empfohlen, wenn Authentisierung benutzt wird, aber besonders bei `Basic` Authentisierung.</span>
+</div>
+
+<!--
+_footer: "[https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization#basic](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization#basic)"
+-->
+
+## Bearer Authentisierung
+
+`Authorization: Bearer <Token>`
+
+- Authentisierungsschema: `Bearer`
+- Authentisierungsparameter besteht aus einem Token, das der Client nie anfassen will und soll
+
+Bearer Authentisierung erfordert, dass der Token vom Client nicht verändert werden kann
+
+<!-- TODO: Beispiele: User-ID als Token, Token 0001, Youtube Video IDs -->
+:arrow_right: JSON Web Tokens
+
+# JSON Web Tokens
+
+<!-- TODO: compare to Toennissen's slides -->
+
+Online Token-Generator: [https://jwt.io/](https://jwt.io/)
+
+# Warum sind JWTs (un)-sicher?
+
+- Header und Payload sind Base64-enkodiert :arrow_right: **Lesbar und veränderbar**
+- Signatur enthält Secret und Payload :arrow_right: **Änderungen sind nachweisbar**
+
+<br>
+
+- Änderungen sind nicht reversibel, das Original bleibt unbekannt.
+- Keine sensiblen Daten sollten in JWTs verpackt werden.
+
+# Nutzung von JWTs
+
+<!-- TODO: nicht alles in JWTs verpacken -->
+
+<!-- TODO: JWTs mit Code generieren -->
+<!-- TODO: Middlewares einbauen -->
+<!-- TODO: Beispiel zeigen -->
+
+<!-- TODO: Wiederholung, was erreicht wurde -->
