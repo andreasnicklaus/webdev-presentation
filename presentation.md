@@ -221,7 +221,7 @@ Hier werden 2 Authentisierungsschemas vorgestellt, es gibt aber noch mehr:
 - Authentisierungsparameter besteht aus dem Base64-enkodiertem String `<username>:<password>`
 
 <div style="background-color: #ff4400aa; border: solid 6px #ff4400; padding: 10px 20px; margin: 10px 0; border-radius: 10px;">
-  <span style="color: white;">Warnung: Base64-encoding kann einfach zum ursprünglichen Namen und Passwort dekodiert werden. Basic Authentisierung ist deshalb **vollständig unsicher**. HTTPS is immer empfohlen, wenn Authentisierung benutzt wird, aber besonders bei `Basic` Authentisierung.</span>
+  <span style="color: white;">Warnung: Base64-encoding kann einfach zum ursprünglichen Namen und Passwort dekodiert werden. Basic Authentisierung ist deshalb <b>vollständig unsicher</b>. HTTPS is immer empfohlen, wenn Authentisierung benutzt wird, aber besonders bei `Basic` Authentisierung.</span>
 </div>
 
 <!--
@@ -240,13 +240,61 @@ Bearer Authentisierung erfordert, dass der Token vom Client nicht verändert wer
 <!-- TODO: Beispiele: User-ID als Token, Token 0001, Youtube Video IDs -->
 :arrow_right: JSON Web Tokens
 
-# JSON Web Tokens
+# JSON Web Token (JWT)
 
 <!-- TODO: compare to Toennissen's slides -->
 
+- Verschlüsselte Tokens zur Authentifizierung von JSON-Daten
+
+1. Datenintegrität: Signierte Tokens
+2. Datenverschlüsselung: Daten werden geheim gehalten
+
 Online Token-Generator: [https://jwt.io/](https://jwt.io/)
 
-# Warum sind JWTs (un)-sicher?
+# Aufbau eines JWT
+
+`hhhhh.pppppppppppppppppppppp.ssssssssssss`
+
+1. Header
+2. Payload
+3. Signature
+
+## JWT Teil 1/3: Header
+
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+wird Base64Url kodiert.
+
+## JWT Teil 2/3: Payload
+
+```json
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "iat": 1516171819
+}
+```
+wird Base64Url kodiert.
+
+- Properties des Payloads werden **Claim** genannt
+- Registrierte Claims sind `sub` (Subject), `iss` (Issuer), `exp` (Expiration Time), `aud` (Audience, Array of Strings), `iat` (Issued at), `jti` (JWT Id), `nbf` (Not before)
+- Neben Public Claims der JSON Web Token Claims Registry sind auch
+**Private Claims** erlaubt **(Vorsicht vor Kollisionen)**
+
+## JWT Teil 3/3: Signature
+
+```js
+HMAC(Base64Url(header).Base64Url(payload), secret)
+```
+
+- Im einfachen Fall werden Header und Payload mit HMAC-Verschlüsselung (hash-base message auth code) symmetrisch Verschlüsselt.
+- Payload und Header werden dennoch unverschlüsselt verwendet.
+
+# Warum sind JWTs sicher?
 
 - Header und Payload sind Base64-enkodiert :arrow_right: **Lesbar und veränderbar**
 - Signatur enthält Secret und Payload :arrow_right: **Änderungen sind nachweisbar**
@@ -256,12 +304,76 @@ Online Token-Generator: [https://jwt.io/](https://jwt.io/)
 - Änderungen sind nicht reversibel, das Original bleibt unbekannt.
 - Keine sensiblen Daten sollten in JWTs verpackt werden.
 
+# JWT mit RSA-Verschlüsselung
+
+```js
+const message =
+  RSA_with_publicKey_of_receiver(Base64(Header)) + "." +
+  RSA_with_publicKey_of_receiver(Base64(Payload))
+
+const signature = RSA_with_privateKey_of_sender(message)
+```
+
+# Verwendung von JWTs im Client
+
+```js
+// Token wird vom letzten Request gespeichert, modifiziert und/oder generiert
+const token = getOrGenerateToken()
+
+fetch("http://example.com/path/",
+  {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token
+    },
+    body: JSON.stringify({...data})
+  }
+)
+```
+
+# Generierung von JWTs im Server
+
+```js
+const jwt = require('jsonwebtoken')
+
+const SECRET = require('crypto').randomBytes(64).toString('hex')
+// '09f26e402586e2faa8da4c98a35f1b20d6b033c6097befa8be3486a829587fe2f90a832bd
+//  3ff9d42710a4da095a2ce285b009f0c3730cd9b8e1af3eb84df6611'
+
+function generateAccessToken(username) {
+  return jwt.sign(username, SECRET, { expiresIn: '1800s' })
+}
+
+app.post('/path', (req, res) => {
+  const token = generateAccessToken({ username: req.body.username })
+  res.json(token);
+})
+```
+
+# JWT-Dekodierung
+
+```js
+app.post('/path', authenticateToken, (req, res) => {
+  // handle request
+})
+
+//middleware for authentication
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization']
+  const token = authHeader.split(' ')[1]
+  if (token == null) return res.sendStatus(401)
+  jwt.verify(token, SECRET, (err, user) => {
+    if (err) 
+      return res.sendStatus(403)
+    req.user = user
+    next()
+  })
+}
+```
+
 # Nutzung von JWTs
 
-<!-- TODO: nicht alles in JWTs verpacken -->
-
-<!-- TODO: JWTs mit Code generieren -->
-<!-- TODO: Middlewares einbauen -->
 <!-- TODO: Beispiel zeigen -->
 
 <!-- TODO: Wiederholung, was erreicht wurde -->
