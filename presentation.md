@@ -242,8 +242,6 @@ Bearer Authentisierung erfordert, dass der Token vom Client nicht verändert wer
 
 # JSON Web Token (JWT)
 
-<!-- TODO: compare to Toennissen's slides -->
-
 - Verschlüsselte Tokens zur Authentifizierung von JSON-Daten
 
 1. Datenintegrität: Signierte Tokens
