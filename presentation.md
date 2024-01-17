@@ -25,6 +25,7 @@ Wie mache ich den Server kaputt?
 [webdev.andreasnicklaus.de](https://webdev.andreasnicklaus.de)
 
 # Was haben wir bisher gemacht?:white_check_mark: HTTP-Server mit Express
+:white_check_mark: HTTP-Server mit Express
 :white_check_mark: HTML-Rendering mit EJS
 :white_check_mark: Datenbankanbindung mit MongoDB
 :white_check_mark: Datenbankverwaltung mit Mongoose
