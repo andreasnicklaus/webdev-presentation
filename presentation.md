@@ -24,6 +24,14 @@ Wie mache ich den Server kaputt?
 <br>
 [webdev.andreasnicklaus.de](https://webdev.andreasnicklaus.de)
 
+# Was haben wir bisher gemacht?:white_check_mark: HTTP-Server mit Express
+:white_check_mark: HTML-Rendering mit EJS
+:white_check_mark: Datenbankanbindung mit MongoDB
+:white_check_mark: Datenbankverwaltung mit Mongoose
+:white_check_mark: 2-Way-Kommunikation mit Websockets
+:white_square_button: ???
+:white_square_button: ???
+
 # Ungeschützte Architektur
 ![h:500 center](images/architecture_01.png)
 # Ungeschützte Architektur
@@ -237,8 +245,25 @@ _footer: "[https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorizati
 
 Bearer Authentisierung erfordert, dass der Token vom Client nicht verändert werden kann
 
-<!-- TODO: Beispiele: User-ID als Token, Token 0001, Youtube Video IDs -->
 :arrow_right: JSON Web Tokens
+
+# Intermezzo: IDs
+
+![center](images/yt-id.png)
+
+ID-Formate:
+- Youtube: `xxxxx-xxxxx` alphanumerisch
+- IG Reels: `xxxxxxxxxxx` alphanumerisch
+- Twitter/X: `0000000000000000000` numerisch
+- IG Stories: `0000000000000000000` numerisch
+
+# Intermezzo: IDs
+Beispiel Youtube: `https://www.youtube.com/watch?v=ElHFJ-8Hy6E`
+
+Ein paar Fragen zur Auswahl des Formats:
+- Welche ID wird als nächste vergeben? Sollte ich dieses Video aufrufen können?
+- Wie viele Varianten gibt das Format her?
+- Wie groß ist die Wahrscheinlichkeit, eine ID zu erraten?
 
 # JSON Web Token (JWT)
 
@@ -371,7 +396,14 @@ function authenticateToken(req, res, next) {
 ```
 
 # Nutzung von JWTs
+:arrow_right: [Codebeispiel](https://gitlab.mi.hdm-stuttgart.de/fridtjof/web-development-backend/-/tree/master/examples/06-joi-jwt?ref_type=heads)
 
-<!-- TODO: Beispiel zeigen -->
+# Was haben wir erreicht?
 
-<!-- TODO: Wiederholung, was erreicht wurde -->
+:white_check_mark: HTTP-Server mit Express
+:white_check_mark: HTML-Rendering mit EJS
+:white_check_mark: Datenbankanbindung mit MongoDB
+:white_check_mark: Datenbankverwaltung mit Mongoose
+:white_check_mark: 2-Way-Kommunikation mit Websockets
+:white_check_mark: Inputvalidierung mit JOI
+:white_check_mark: Authentisierung mit JSON Web Tokens
