@@ -34,15 +34,15 @@ Wie mache ich den Server kaputt?
 :white_square_button: ???
 
 # Ungeschützte Architektur
-![h:500 center](images/architecture_01.png)
+![h:500 center](https://andreasnicklaus.github.io/webdev-presentation/images/architecture_01.png)
 # Ungeschützte Architektur
-![h:500 center](images/architecture_02.png)
+![h:500 center](https://andreasnicklaus.github.io/webdev-presentation/images/architecture_02.png)
 # Ungeschützte Architektur
-![h:500 center](images/architecture_03.png)
+![h:500 center](https://andreasnicklaus.github.io/webdev-presentation/images/architecture_03.png)
 # Ungeschützte Architektur
-![h:500 center](images/architecture_04.png)
+![h:500 center](https://andreasnicklaus.github.io/webdev-presentation/images/architecture_04.png)
 # Geschützte Datenbankstruktur
-![h:500 center](images/architecture_05.png)
+![h:500 center](https://andreasnicklaus.github.io/webdev-presentation/images/architecture_05.png)
 
 # Beispiel Twitter
 
@@ -189,7 +189,7 @@ app.post('/post', validateSchema(myTwitterPostSchema, "body"), => {
 ```
 
 # Geschützter Backend-Server
-![h:500 center](images/architecture_06.png)
+![h:500 center](https://andreasnicklaus.github.io/webdev-presentation/images/architecture_06.png)
 
 ## Was denkt ihr?
 
@@ -250,7 +250,7 @@ Bearer Authentisierung erfordert, dass der Token vom Client nicht verändert wer
 
 # Intermezzo: IDs
 
-![center](images/yt-id.png)
+![center](https://andreasnicklaus.github.io/webdev-presentation/images/yt-id.png)
 
 ID-Formate:
 - Youtube: `xxxxx-xxxxx` alphanumerisch
