@@ -22,7 +22,7 @@ JOI und JWT - Server vor invalidem Input schützen
 oder:
 Wie mache ich den Server kaputt?
 <br>
-[webdev.andreasnicklaus.de](https://webdev.andreasnicklaus.de)
+[webdev.andreasnicklaus.de](https://webdev.andreasnicklaus.de) - [:file_folder: PDF herunterladen](https://webdev.andreasnicklaus.de/joi_jwt.pdf)
 
 # Was haben wir bisher gemacht?
 :white_check_mark: HTTP-Server mit Express

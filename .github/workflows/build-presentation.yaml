@@ -22,6 +22,13 @@ jobs:
           args: presentation.md -o docs/index.html --html --title="Optimierung einer VueJS-Web-App" --author="Andreas Nicklaus" --theme-set ./style/rose-pine.css
         env:
           MARP_USER: root:root
+      - name: Marp Build
+        uses: docker://marpteam/marp-cli:v3.4.0
+        with:
+          entrypoint: /home/marp/.cli/docker-entrypoint
+          args: presentation.md -o docs/joi_jwt.pdf --theme-set ./style/rose-pine.css
+        env:
+          MARP_USER: root:root
       - name: copy images
         run: sudo cp -r images docs/images
       - name: Deploy production
