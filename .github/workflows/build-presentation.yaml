@@ -26,7 +26,7 @@ jobs:
         uses: docker://marpteam/marp-cli:v3.4.0
         with:
           entrypoint: /home/marp/.cli/docker-entrypoint
-          args: presentation.md -o docs/joi_jwt.pdf --theme-set ./style/rose-pine.css
+          args: presentation.md -o docs/joi_jwt.pdf --allow-local-files --theme-set ./style/rose-pine.css
         env:
           MARP_USER: root:root
       - name: copy images
