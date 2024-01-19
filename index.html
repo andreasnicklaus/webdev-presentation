@@ -460,7 +460,7 @@ img[alt~=center]{
   <span class="hljs-keyword">return</span> middleware
 }
 
-app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/post&#x27;</span>, <span class="hljs-title function_">validateSchema</span>(myTwitterPostSchema, <span class="hljs-string">&quot;body&quot;</span>), =&gt; {
+app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/post&#x27;</span>, <span class="hljs-title function_">validateSchema</span>(myTwitterPostSchema, <span class="hljs-string">&quot;body&quot;</span>), <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
   ...
 })
 </code></pre>
