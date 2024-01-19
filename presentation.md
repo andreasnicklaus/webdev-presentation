@@ -110,6 +110,8 @@ Welche Arten von schlechten Inputs können wir erfahren?
   "creationTime": 1705326917363
 }
 ```
+
+![h:200 center](images/Tweet.png)
 <!-- 
 Frage: Was für schlechte Inputs können wir erfahren?
 
@@ -325,7 +327,6 @@ Input-Müll frühzeitig erkennen und Request nicht weiter bearbeiten
 
 # Nutzung von JOI
 :arrow_right: [Codebeispiel](https://gitlab.mi.hdm-stuttgart.de/fridtjof/web-development-backend/-/tree/master/examples/06-joi-jwt?ref_type=heads)
-<!-- TODO: Präsentationsfolien -->
 
 ## Was denkt ihr?
 
@@ -346,6 +347,7 @@ Input-Müll frühzeitig erkennen und Request nicht weiter bearbeiten
   - Mongoose
   - [Datenbank]
 
+[Pause?]
 Was geschrieben wird, aber nicht wer schreibt.
  -->
 
@@ -415,6 +417,7 @@ Authorization: Basic <base64('<username>:<password>')>
 WWW-Authenticate: Browser-Alert mit Nutzername und Passwort
 
 [Beispiel https://www.hdm-stuttgart.de/intranet]
+[Zeigen mit https://www.base64encode.org/]
  -->
 
 ## Basic Authorization
@@ -436,7 +439,7 @@ Passwort und Nutzername sind einfach dekodierbar
 `Authorization: Bearer <Token>`
 
 - Authentisierungsschema: `Bearer`
-- Authentisierungsparameter besteht aus einem Token, das der Client nie anfassen will und soll
+- Authentisierungsparameter besteht aus einem `Token`, das der Client nie anfassen will und soll
 
 Bearer Authentisierung erfordert, dass der Token vom Client nicht verändert werden kann
 
@@ -451,6 +454,8 @@ Authorization: Bearer <Token>
 - Bearer Authentisierung erfordert, dass der Token vom Client nicht verändert werden kann
 
 Eine Methode, die diese Anforderungen erfüllt, sind JSON Web Tokens
+
+[Pause?]
  -->
 
 # Intermezzo: IDs
@@ -582,6 +587,9 @@ Signatur ist Base64-encoded Header und Payload, HMAC-verschlüsselt
 [Exkurs: Hash-Funktionen]
 
 -> Secret müsste dem Client bekannt sein, praktisch nicht möglich
+
+-> https://jwt.io/#debugger-io
+[Rumspielen]
  -->
 
 # Warum sind JWTs sicher?
@@ -697,7 +705,6 @@ Besser in einer Middleware
 
 # Nutzung von JWTs
 :arrow_right: [Codebeispiel](https://gitlab.mi.hdm-stuttgart.de/fridtjof/web-development-backend/-/tree/master/examples/06-joi-jwt?ref_type=heads)
-<!-- TODO: Präsentationsnotizen -->
 
 # Was haben wir erreicht?
 :white_check_mark: HTTP-Server mit Express
