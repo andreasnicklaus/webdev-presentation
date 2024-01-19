@@ -298,7 +298,7 @@ validateSchema = function (schema, property) {
   return middleware
 }
 
-app.post('/post', validateSchema(myTwitterPostSchema, "body"), => {
+app.post('/post', validateSchema(myTwitterPostSchema, "body"), (req, res) => {
   ...
 })
 ```
