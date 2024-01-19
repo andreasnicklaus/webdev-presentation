@@ -210,6 +210,7 @@ img[alt~=center]{
   <span class="hljs-attr">&quot;creationTime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1705326917363</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
+<p><img src="images/Tweet.png" alt="center" style="height:200px;" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-theme="rose-pine" data-heading-divider="2" data-style=".mermaid {
   background-color: transparent; border-color: transparent; width: max-content; margin: 0 auto;
@@ -672,7 +673,7 @@ img[alt~=center]{
 <p><code>Authorization: Bearer &lt;Token&gt;</code></p>
 <ul>
 <li>Authentisierungsschema: <code>Bearer</code></li>
-<li>Authentisierungsparameter besteht aus einem Token, das der Client nie anfassen will und soll</li>
+<li>Authentisierungsparameter besteht aus einem <code>Token</code>, das der Client nie anfassen will und soll</li>
 </ul>
 <p>Bearer Authentisierung erfordert, dass der Token vom Client nicht verändert werden kann</p>
 <p><img class="emoji" draggable="false" alt="➡️" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/27a1.svg" data-marp-twemoji=""/> JSON Web Tokens</p>
@@ -1180,7 +1181,7 @@ Parameter: Schema und Property des Requests (Body, Query, Params)
 
 Alternativ Websocket-Message Middleware</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>Mit JOI den Server schützen
 
-Input-Müll frühzeitig erkennen und Request nicht weiter bearbeiten</p></div><div class="bespoke-marp-note" data-index="16" tabindex="0"><p>TODO: Präsentationsfolien</p></div><div class="bespoke-marp-note" data-index="17" tabindex="0"><p>[Umfrage]
+Input-Müll frühzeitig erkennen und Request nicht weiter bearbeiten</p></div><div class="bespoke-marp-note" data-index="17" tabindex="0"><p>[Umfrage]
 
 [Developer-Experience]
 [Wo &amp; wofür werden Schemas definiert?]
@@ -1193,6 +1194,7 @@ Input-Müll frühzeitig erkennen und Request nicht weiter bearbeiten</p></div><d
   - Mongoose
   - [Datenbank]
 
+[Pause?]
 Was geschrieben wird, aber nicht wer schreibt.</p></div><div class="bespoke-marp-note" data-index="18" tabindex="0"><p>Beispiel-Request-Body
 [Viele Wege führen nach Rom]
 
@@ -1214,7 +1216,8 @@ Authorization: Basic &lt;base64('&lt;username&gt;:&lt;password&gt;')&gt;
 
 WWW-Authenticate: Browser-Alert mit Nutzername und Passwort
 
-[Beispiel https://www.hdm-stuttgart.de/intranet]</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>[Warnung]
+[Beispiel https://www.hdm-stuttgart.de/intranet]
+[Zeigen mit https://www.base64encode.org/]</p></div><div class="bespoke-marp-note" data-index="21" tabindex="0"><p>[Warnung]
 
 Zeigen mit https://www.base64decode.org/
 bWF4MTIzOnN1cGVyU3Rhcmtlc1Bhc3N3b3J0MTIz
@@ -1227,7 +1230,9 @@ Authorization: Bearer &lt;Token&gt;
 - Bearer bedeutet Träger, Aufbewahrer -&gt; Ringebearer aus Herr der Ringe
 - Bearer Authentisierung erfordert, dass der Token vom Client nicht verändert werden kann
 
-Eine Methode, die diese Anforderungen erfüllt, sind JSON Web Tokens</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>Intermezzo über Ids
+Eine Methode, die diese Anforderungen erfüllt, sind JSON Web Tokens
+
+[Pause?]</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>Intermezzo über Ids
 
 Token-Idee Nutzer-Id, welche Probleme damit auftreten
 
@@ -1271,7 +1276,10 @@ JSON-String wird Base64Url enkodiert.</p></div><div class="bespoke-marp-note" da
 
 [Exkurs: Hash-Funktionen]
 
--&gt; Secret müsste dem Client bekannt sein, praktisch nicht möglich</p></div><div class="bespoke-marp-note" data-index="30" tabindex="0"><p>- Base64 ist dekodierbar, also Payload lesbar und veränderbar
+-&gt; Secret müsste dem Client bekannt sein, praktisch nicht möglich
+
+-&gt; https://jwt.io/#debugger-io
+[Rumspielen]</p></div><div class="bespoke-marp-note" data-index="30" tabindex="0"><p>- Base64 ist dekodierbar, also Payload lesbar und veränderbar
 - Aber Änderungen sind nachweisbar, weil die Signatur dann nicht mehr zum Payload und Header passt
 
 - Änderungen sind nicht reversibel
@@ -1293,7 +1301,7 @@ JSON-String wird Base64Url enkodiert.</p></div><div class="bespoke-marp-note" da
 3. nicht vorhanden: 401
 4. andernfalls verifizieren
 5. nicht valide: 403
-6. andernfalls nächster Requesthandler</p></div><div class="bespoke-marp-note" data-index="35" tabindex="0"><p>TODO: Präsentationsnotizen</p></div><div class="bespoke-marp-note" data-index="36" tabindex="0"><p>Jetzt dazugekommen:
+6. andernfalls nächster Requesthandler</p></div><div class="bespoke-marp-note" data-index="36" tabindex="0"><p>Jetzt dazugekommen:
 
 1. Inputvalidierung
 2. Authentisierung</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@3.4.0/lib/bespoke.js.LICENSE.txt */
